@@ -19,8 +19,4 @@ public class OutputService {
         }
         System.out.println();
     }
-
-    public void printWinners() {
-        System.out.print("최종 우승자 : ");
-    }
 }
