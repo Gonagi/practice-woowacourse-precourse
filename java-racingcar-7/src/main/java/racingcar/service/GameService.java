@@ -31,6 +31,10 @@ public class GameService {
                 .toList();
     }
 
+    public List<Car> getCars() {
+        return game.getCars();
+    }
+
     private void playGame() {
         for (Car car : game.getCars()) {
             car.move(numberGenerator.generate());
