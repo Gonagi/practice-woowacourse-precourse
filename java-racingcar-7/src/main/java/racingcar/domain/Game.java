@@ -20,6 +20,12 @@ public class Game {
         return new Game(cars, attemptCount);
     }
 
+    public List<String> getCarLocations() {
+        return cars.stream()
+                .map(Car::getLocation)
+                .toList();
+    }
+    
     private static List<Car> getCarList(String carNames) {
         validateCarNames(carNames);
         String[] names = carNames.split(COMMA);
