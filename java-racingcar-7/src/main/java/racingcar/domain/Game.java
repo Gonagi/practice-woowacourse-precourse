@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -25,17 +25,22 @@ public class Game {
                 .map(Car::getLocation)
                 .toList();
     }
-    
+
     private static List<Car> getCarList(String carNames) {
         validateCarNames(carNames);
         String[] names = carNames.split(COMMA);
 
-        List<Car> cars = new ArrayList<>();
-        for (String name : names) {
-            cars.add(Car.of(name));
-        }
+        return Arrays.stream(names)
+                .map(String::trim)
+                .peek(Game::validateNameLength)
+                .map(Car::of)
+                .toList();
+    }
 
-        return cars;
+    private static void validateNameLength(final String name) {
+        if (name.length() > 5) {
+            throw new IllegalArgumentException("이름은 5자 이하여야 합니다.");
+        }
     }
 
     private static void validateCarNames(final String carNames) {
