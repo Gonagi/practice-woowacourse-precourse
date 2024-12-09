@@ -15,10 +15,14 @@ public class Car {
         return new Car(name, "");
     }
 
-    public void move(final int RandomValue) {
-        if (RandomValue >= 4) {
+    public void move(final int number) {
+        if (number >= 4) {
             this.location += "-";
         }
+    }
+
+    public int getLocationIndex() {
+        return getLocation().length();
     }
 
     public String getName() {
@@ -28,6 +32,7 @@ public class Car {
     public String getLocation() {
         return location;
     }
+
 
     @Override
     public boolean equals(Object o) {
