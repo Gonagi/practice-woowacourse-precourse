@@ -3,28 +3,36 @@ package racingcar.domain;
 import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class GameTest {
-    @Test
-    void 게임_생성_정상_흐름() {
+    Game game;
+
+    @BeforeEach
+    void setUp() {
         String carNames = "pobi,woni,jun";
         int attemptCount = 5;
+
+        game = Game.generateGame(carNames, attemptCount);
+    }
+
+    @Test
+    void 게임_생성_정상_흐름() {
         List<Car> expectedCars = List.of(
                 Car.of("pobi"),
                 Car.of("woni"),
                 Car.of("jun")
         );
-
-        Game game = Game.generateGame(carNames, attemptCount);
+        int expectedAttemptCount = 5;
 
         Assertions.assertThat(game.getCars())
                 .isEqualTo(expectedCars);
         Assertions.assertThat(game.getAttemptCount())
-                .isEqualTo(5);
+                .isEqualTo(expectedAttemptCount);
     }
 
     @MethodSource("invalidCarNamesTestCases")
@@ -44,5 +52,4 @@ class GameTest {
                 Arguments.of("pobi&woni&jun")
         );
     }
-
 }
