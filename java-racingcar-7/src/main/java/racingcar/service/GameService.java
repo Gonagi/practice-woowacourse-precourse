@@ -19,15 +19,9 @@ public class GameService {
         return new GameService(game, numberGenerator);
     }
 
-    public void playGames() {
-        for (int count = 0; count < game.getAttemptCount(); count++) {
-            playGame();
-        }
-    }
-
     public List<Car> createWinnerCars() {
         int maxIndex = getMaxIndex();
-        return game.getCars().stream().filter(car -> Objects.equals(car.getLocationIndex(), maxIndex))
+        return getCars().stream().filter(car -> Objects.equals(car.getLocationIndex(), maxIndex))
                 .toList();
     }
 
@@ -35,8 +29,12 @@ public class GameService {
         return game.getCars();
     }
 
-    private void playGame() {
-        for (Car car : game.getCars()) {
+    public int getAttemptCount() {
+        return game.getAttemptCount();
+    }
+
+    public void playGame() {
+        for (Car car : getCars()) {
             car.move(numberGenerator.generate());
         }
     }

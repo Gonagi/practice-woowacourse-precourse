@@ -28,7 +28,9 @@ class GameServiceTest {
         List<String> expectedLocations = List.of("---", "---", "-");
 
         GameService gameService = GameService.of(game, fakeRandomGenerator);
-        gameService.playGames();
+        for (int count = 0; count < gameService.getAttemptCount(); count++) {
+            gameService.playGame();
+        }
 
         Assertions.assertThat(gameService.getGame().getCarLocations())
                 .isEqualTo(expectedLocations);
@@ -39,7 +41,9 @@ class GameServiceTest {
         List<Car> expectedWinners = List.of(Car.of("pobi"), Car.of("woni"));
 
         GameService gameService = GameService.of(game, fakeRandomGenerator);
-        gameService.playGames();
+        for (int count = 0; count < gameService.getAttemptCount(); count++) {
+            gameService.playGame();
+        }
         List<Car> winnerCars = gameService.createWinnerCars();
 
         Assertions.assertThat(winnerCars).isEqualTo(expectedWinners);
