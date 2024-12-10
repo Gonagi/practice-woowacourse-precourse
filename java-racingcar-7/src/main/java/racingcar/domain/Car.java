@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.constants.Messages.INVALID_CAR_NAME_LENGTH;
+
 import java.util.Objects;
 
 public class Car {
@@ -18,6 +20,12 @@ public class Car {
     public void move(final int number) {
         if (number >= 4) {
             this.location += "-";
+        }
+    }
+
+    public static void validateNameLength(final String name) {
+        if (name.length() > 5) {
+            throw new IllegalArgumentException(INVALID_CAR_NAME_LENGTH.getMessage());
         }
     }
 
