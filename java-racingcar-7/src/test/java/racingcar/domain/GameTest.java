@@ -36,6 +36,15 @@ class GameTest {
     }
 
     @Test
+    void 시도_횟수로_0이하_정수를_입력하면_오류가_발생한다() {
+        String carNames = "pobi";
+        int attemptCount = 0;
+        
+        org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class,
+                () -> Game.generateGame(carNames, attemptCount));
+    }
+
+    @Test
     void 자동차_이름에_중복이_있으면_오류가_발생한다() {
         String carNames = "pobi,pobi";
         int attemptCount = 5;

@@ -10,6 +10,7 @@ public enum Messages {
     // error
     INVALID_NUMBER_COUNT("fakeNumber 개수가 맞지 않습니다."),
     INVALID_NUMBER_RANGE("범위를 벗어나는 숫자를 입력했습니다."),
+    NON_POSITIVE_ATTEMPT_COUNT("시도 횟수로는 0을 입력해야 합니다."),
     DUPLICATE_CAR_NAMES("중복된 이름이 있습니다."),
     INVALID_CAR_NAME_LENGTH("이름은 5자 이하여야 합니다."),
     INVALID_CAR_NAME_FORM("입력한 자동차 이름들의 형식이 맞지 않습니다."),

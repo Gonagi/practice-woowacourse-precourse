@@ -3,6 +3,7 @@ package racingcar.domain;
 import static racingcar.constants.Messages.DUPLICATE_CAR_NAMES;
 import static racingcar.constants.Messages.INVALID_CAR_NAME_FORM;
 import static racingcar.constants.Messages.INVALID_CAR_NAME_LENGTH;
+import static racingcar.constants.Messages.NON_POSITIVE_ATTEMPT_COUNT;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -23,6 +24,7 @@ public class Game {
 
     public static Game generateGame(final String carNames, final int attemptCount) {
         List<Car> cars = getCarList(carNames);
+        validateAttemptCount(attemptCount);
         return new Game(cars, attemptCount);
     }
 
@@ -43,6 +45,12 @@ public class Game {
                 .peek(Game::validateNameLength)
                 .map(Car::of)
                 .toList();
+    }
+
+    private static void validateAttemptCount(final int attemptCount) {
+        if (attemptCount < 0) {
+            throw new IllegalArgumentException(NON_POSITIVE_ATTEMPT_COUNT.getMessage());
+        }
     }
 
     private static void validateDuplicateName(final String[] names) {
