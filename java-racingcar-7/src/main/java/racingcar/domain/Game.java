@@ -1,5 +1,8 @@
 package racingcar.domain;
 
+import static racingcar.constants.Messages.INVALID_CAR_NAME_FORM;
+import static racingcar.constants.Messages.INVALID_CAR_NAME_LENGTH;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -39,13 +42,13 @@ public class Game {
 
     private static void validateNameLength(final String name) {
         if (name.length() > 5) {
-            throw new IllegalArgumentException("이름은 5자 이하여야 합니다.");
+            throw new IllegalArgumentException(INVALID_CAR_NAME_LENGTH.getMessage());
         }
     }
 
     private static void validateCarNames(final String carNames) {
         if (!Pattern.matches(ALPHABET_COMMA_REGEX, carNames)) {
-            throw new IllegalArgumentException("입력한 자동차 이름들의 형식이 맞지 않습니다.");
+            throw new IllegalArgumentException(INVALID_CAR_NAME_FORM.getMessage());
         }
     }
 

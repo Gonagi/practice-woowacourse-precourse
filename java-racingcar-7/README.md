@@ -42,3 +42,26 @@
 ### 랜덤값 생성기
 
 - 범위를 벗어난 숫자가 생성되면 오류가 발생한다
+
+---
+
+## 파일 구조
+
+```
+racingcar
+  ├── Application.java
+  ├── controller
+  │   └── Controller.java
+  ├── domain
+  │   ├── Car.java
+  │   ├── Game.java
+  │   └── random
+  │       ├── FakeRandomGenerator.java
+  │       ├── NumberGenerator.java
+  │       └── RealRandomGenerator.java
+  ├── service
+  │   └── GameService.java
+  └── view
+      ├── InputView.java
+      └── OutputView.java
+```

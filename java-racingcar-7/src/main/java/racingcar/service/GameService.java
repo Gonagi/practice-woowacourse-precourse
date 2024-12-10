@@ -1,5 +1,7 @@
 package racingcar.service;
 
+import static racingcar.constants.Messages.NO_CARS_PARTICIPATED;
+
 import java.util.List;
 import java.util.Objects;
 import racingcar.domain.Car;
@@ -41,7 +43,7 @@ public class GameService {
 
     private int getMaxIndex() {
         return game.getCars().stream().mapToInt(Car::getLocationIndex).max()
-                .orElseThrow(() -> new IllegalArgumentException("게임에 참가한 자동차가 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(NO_CARS_PARTICIPATED.getMessage()));
     }
 
     public Game getGame() {

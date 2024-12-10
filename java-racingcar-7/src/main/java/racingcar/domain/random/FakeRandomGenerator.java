@@ -1,5 +1,7 @@
 package racingcar.domain.random;
 
+import static racingcar.constants.Messages.INVALID_NUMBER_COUNT;
+
 import java.util.List;
 
 public class FakeRandomGenerator implements NumberGenerator {
@@ -20,7 +22,7 @@ public class FakeRandomGenerator implements NumberGenerator {
     @Override
     public int generate() {
         if (index >= numbers.size()) {
-            throw new IllegalArgumentException("fakeNumber 개수가 맞지 않습니다.");
+            throw new IllegalArgumentException(INVALID_NUMBER_COUNT.getMessage());
         }
         return numbers.get(index++);
     }
