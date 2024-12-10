@@ -1,12 +1,14 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
-import java.util.ArrayList;
+import static lotto.constants.Messages.INVALID_LOTTO_SIZE;
+
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     private Lotto(final List<Integer> numbers) {
+        validateLottoSize(numbers);
         this.numbers = numbers;
     }
 
@@ -15,12 +17,12 @@ public class Lotto {
     }
 
     public List<Integer> getLottoNumbers() {
-        ArrayList<Integer> lottoNumbers = new ArrayList<>(numbers);
-        lottoNumbers.removeLast();
-        return lottoNumbers;
+        return numbers;
     }
 
-    public int getBonusNumber() {
-        return numbers.getLast();
+    private void validateLottoSize(final List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
+        }
     }
 }
