@@ -7,7 +7,6 @@ public enum Messages {
     RESULT_MESSAGE("실행 결과"),
     WINNER_MESSAGE("최종 우승자 : "),
 
-
     // error
     INVALID_NUMBER_COUNT("fakeNumber 개수가 맞지 않습니다."),
     INVALID_NUMBER_RANGE("범위를 벗어나는 숫자를 입력했습니다."),
