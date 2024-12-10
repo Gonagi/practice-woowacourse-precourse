@@ -1,10 +1,13 @@
 package racingcar.domain;
 
+import static racingcar.constants.Messages.DUPLICATE_CAR_NAMES;
 import static racingcar.constants.Messages.INVALID_CAR_NAME_FORM;
 import static racingcar.constants.Messages.INVALID_CAR_NAME_LENGTH;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class Game {
@@ -33,11 +36,23 @@ public class Game {
         validateCarNames(carNames);
         String[] names = carNames.split(COMMA);
 
+        validateDuplicateName(names);
+
         return Arrays.stream(names)
                 .map(String::trim)
                 .peek(Game::validateNameLength)
                 .map(Car::of)
                 .toList();
+    }
+
+    private static void validateDuplicateName(final String[] names) {
+        Set<String> uniqueNames = new HashSet<>();
+
+        for (String name : names) {
+            if (!uniqueNames.add(name.trim())) {
+                throw new IllegalArgumentException(DUPLICATE_CAR_NAMES.getMessage() + name.trim());
+            }
+        }
     }
 
     private static void validateNameLength(final String name) {
