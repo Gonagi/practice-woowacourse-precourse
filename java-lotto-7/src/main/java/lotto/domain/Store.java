@@ -5,8 +5,12 @@ import static lotto.constants.Messages.NON_THOUSAND_UNIT_MONEY;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.random.LottoMachine;
-import lotto.domain.random.RealRandomGenerator;
+import lotto.domain.lotto.BonusNumber;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Receipt;
+import lotto.domain.lottoMachine.LottoMachine;
+import lotto.domain.lottoMachine.RealRandomGenerator;
+import lotto.util.NumbersSeparator;
 
 public class Store {
     private final LottoMachine lottoMachine;
@@ -15,14 +19,22 @@ public class Store {
         this.lottoMachine = new RealRandomGenerator();
     }
 
-    public List<Lotto> buyLottos(final int money) {
+    public List<Receipt> buyLottos(final int money) {
         validateMoney(money);
 
-        List<Lotto> lottos = new ArrayList<>();
+        List<Receipt> receipts = new ArrayList<>();
         for (int count = 0; count < money / 1000; count++) {
-            lottos.add(Lotto.createLotto(lottoMachine.generate()));
+            createReceipt(receipts);
         }
-        return lottos;
+        return receipts;
+    }
+
+    private void createReceipt(List<Receipt> receipts) {
+        List<Integer> randomNumbers = lottoMachine.generate();
+        Lotto lotto = NumbersSeparator.separateLottoNumbers(randomNumbers);
+        int bonusNumber = NumbersSeparator.separateBonusNumber(randomNumbers);
+        
+        receipts.add(Receipt.of(lotto, BonusNumber.from(bonusNumber)));
     }
 
     private void validateMoney(final int money) {
