@@ -43,7 +43,16 @@ class GameTest {
         org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class,
                 () -> Game.generateGame(carNames, attemptCount));
     }
-    
+
+    @MethodSource("invalidCarNamesFormatTestCases")
+    @ParameterizedTest(name = "입력 문자열: {0}")
+    void 자동차_이름_문자열_형식이_틀리면_오류가_발생한다(String carNames) {
+        int attemptCount = 5;
+
+        org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class,
+                () -> Game.generateGame(carNames, attemptCount));
+    }
+
     @MethodSource("invalidCarNamesTestCases")
     @ParameterizedTest(name = "입력 문자열: {0}")
     void 자동차_이름_문자열에_알파벳_콤마가_아닌_다른_문자가_있을때는_오류가_발생한다(String carNames) {
@@ -51,6 +60,13 @@ class GameTest {
 
         org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class,
                 () -> Game.generateGame(carNames, attemptCount));
+    }
+
+    private static Stream<Arguments> invalidCarNamesFormatTestCases() {
+        return Stream.of(
+                Arguments.of(",pobi"),
+                Arguments.of("pobi,")
+        );
     }
 
     private static Stream<Arguments> invalidCarNamesTestCases() {
