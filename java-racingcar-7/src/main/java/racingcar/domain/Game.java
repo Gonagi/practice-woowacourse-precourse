@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import static racingcar.constants.Messages.DUPLICATE_CAR_NAMES;
 import static racingcar.constants.Messages.INVALID_CAR_NAME_FORM;
-import static racingcar.constants.Messages.INVALID_CAR_NAME_LENGTH;
 import static racingcar.constants.Messages.NON_POSITIVE_ATTEMPT_COUNT;
 
 import java.util.Arrays;
@@ -34,6 +33,12 @@ public class Game {
                 .toList();
     }
 
+    public static void validateAttemptCount(final int attemptCount) {
+        if (attemptCount < 0) {
+            throw new IllegalArgumentException(NON_POSITIVE_ATTEMPT_COUNT.getMessage());
+        }
+    }
+
     private static List<Car> getCarList(String carNames) {
         validateCarNames(carNames);
         String[] names = carNames.split(COMMA);
@@ -42,15 +47,9 @@ public class Game {
 
         return Arrays.stream(names)
                 .map(String::trim)
-                .peek(Game::validateNameLength)
+                .peek(Car::validateNameLength)
                 .map(Car::of)
                 .toList();
-    }
-
-    private static void validateAttemptCount(final int attemptCount) {
-        if (attemptCount < 0) {
-            throw new IllegalArgumentException(NON_POSITIVE_ATTEMPT_COUNT.getMessage());
-        }
     }
 
     private static void validateDuplicateName(final String[] names) {
@@ -60,12 +59,6 @@ public class Game {
             if (!uniqueNames.add(name.trim())) {
                 throw new IllegalArgumentException(DUPLICATE_CAR_NAMES.getMessage() + name.trim());
             }
-        }
-    }
-
-    private static void validateNameLength(final String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException(INVALID_CAR_NAME_LENGTH.getMessage());
         }
     }
 
