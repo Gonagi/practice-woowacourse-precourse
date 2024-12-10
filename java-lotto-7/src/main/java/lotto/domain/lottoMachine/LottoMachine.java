@@ -1,8 +1,7 @@
-package lotto.domain.random;
+package lotto.domain.lottoMachine;
 
 import static lotto.constants.Messages.DUPLICATE_LOTTO_NUMBER;
 import static lotto.constants.Messages.INVALID_LOTTO_NUMBER_RANGE;
-import static lotto.constants.Messages.INVALID_LOTTO_SIZE;
 
 import java.util.HashSet;
 import java.util.List;
@@ -12,15 +11,8 @@ public interface LottoMachine {
     List<Integer> generate();
 
     default void validateLottoNumbers(final List<Integer> numbers) {
-        validateLottoSize(numbers);
         validateLottoRange(numbers);
         validateDuplicateNumber(numbers);
-    }
-
-    private void validateLottoSize(final List<Integer> numbers) {
-        if (numbers.size() != 7) {
-            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
-        }
     }
 
     private void validateLottoRange(final List<Integer> numbers) {

@@ -1,4 +1,4 @@
-package lotto.domain.random;
+package lotto.domain.lottoMachine;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -12,21 +12,14 @@ class FakeRandomGeneratorTest {
     @ParameterizedTest(name = "로또 번호: {0}, 보너스 번호: {1}")
     void 범위를_벗어난_번호로_로또를_생성하면_오류가_발생한다(List<Integer> invalidNumbers, int bonusNumber) {
         Assertions.assertThrows(IllegalArgumentException.class, () ->
-                FakeRandomGenerator.from(invalidNumbers, bonusNumber));
+                FakeRandomGenerator.of(invalidNumbers, bonusNumber));
     }
 
     @MethodSource("duplicateNumbersTestCases")
     @ParameterizedTest(name = "로또 번호: {0}, 보너스 번호: {1}")
     void 생성한_번호들간에_중복이_발생하면_오류가_발생한다(List<Integer> invalidNumbers, int bonusNumber) {
         Assertions.assertThrows(IllegalArgumentException.class, () ->
-                FakeRandomGenerator.from(invalidNumbers, bonusNumber));
-    }
-
-    @MethodSource("invalidNumbersSizeTestCases")
-    @ParameterizedTest(name = "로또 번호: {0}, 보너스 번호: {1}")
-    void 생성한_번호의_개수가_맞지_않으면_오류가_발생한다(List<Integer> invalidNumbers, int bonusNumber) {
-        Assertions.assertThrows(IllegalArgumentException.class, () ->
-                FakeRandomGenerator.from(invalidNumbers, bonusNumber));
+                FakeRandomGenerator.of(invalidNumbers, bonusNumber));
     }
 
     private static Stream<Arguments> invalidRangeNumbersTestCases() {
@@ -42,14 +35,6 @@ class FakeRandomGeneratorTest {
         return Stream.of(
                 Arguments.of(List.of(1, 1, 3, 4, 5, 6), 7),
                 Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6)
-        );
-    }
-
-    private static Stream<Arguments> invalidNumbersSizeTestCases() {
-        return Stream.of(
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7), 8),
-                Arguments.of(List.of(1, 2, 3, 4, 5), 7),
-                Arguments.of(List.of(), 7)
         );
     }
 }

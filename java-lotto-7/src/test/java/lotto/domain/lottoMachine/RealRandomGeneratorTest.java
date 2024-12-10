@@ -1,4 +1,4 @@
-package lotto.domain.random;
+package lotto.domain.lottoMachine;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
