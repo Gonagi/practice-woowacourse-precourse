@@ -39,7 +39,7 @@ class GameTest {
     void 시도_횟수로_0이하_정수를_입력하면_오류가_발생한다() {
         String carNames = "pobi";
         int attemptCount = 0;
-        
+
         org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class,
                 () -> Game.generateGame(carNames, attemptCount));
     }

@@ -48,7 +48,7 @@ public class Game {
     }
 
     private static void validateAttemptCount(final int attemptCount) {
-        if (attemptCount < 0) {
+        if (attemptCount <= 0) {
             throw new IllegalArgumentException(NON_POSITIVE_ATTEMPT_COUNT.getMessage());
         }
     }
