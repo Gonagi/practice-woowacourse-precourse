@@ -5,12 +5,9 @@ import static lotto.constants.Messages.NON_THOUSAND_UNIT_MONEY;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.lotto.BasicNumbers;
-import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lottoMachine.LottoMachine;
 import lotto.domain.lottoMachine.RealRandomGenerator;
-import lotto.util.NumbersSeparator;
 
 public class Store {
     private final LottoMachine lottoMachine;
@@ -24,17 +21,9 @@ public class Store {
 
         List<Lotto> lottos = new ArrayList<>();
         for (int count = 0; count < money / 1000; count++) {
-            createLottos(lottos);
+            lottos.add(Lotto.from(lottoMachine.generate()));
         }
         return lottos;
-    }
-
-    private void createLottos(List<Lotto> lottos) {
-        List<Integer> randomNumbers = lottoMachine.generate();
-        BasicNumbers lotto = NumbersSeparator.separateLottoNumbers(randomNumbers);
-        BonusNumber bonusNumber = NumbersSeparator.separateBonusNumber(randomNumbers);
-
-        lottos.add(Lotto.of(lotto, bonusNumber));
     }
 
     private void validateMoney(final int money) {

@@ -2,29 +2,29 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.function.Predicate;
-import lotto.domain.lotto.BasicNumbers;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.WinnerLotto;
 
 public class WinnerMachine {
-    private final Lotto winnerLotto;
+    private final WinnerLotto winnerLotto;
 
-    private WinnerMachine(final Lotto winnerLotto) {
+    private WinnerMachine(final WinnerLotto winnerLotto) {
         this.winnerLotto = winnerLotto;
     }
 
-    public static WinnerMachine from(final Lotto winnerLotto) {
+    public static WinnerMachine from(final WinnerLotto winnerLotto) {
         return new WinnerMachine(winnerLotto);
     }
 
-    public List<Result> checkLottos(final List<BasicNumbers> lottos) {
+    public List<Result> checkLottos(final List<Lotto> lottos) {
         return lottos.stream()
                 .map(this::checkLotto)
                 .toList();
     }
 
-    private Result checkLotto(final BasicNumbers lotto) {
-        int basicMatchCount = checkBasicMatchCount(lotto.getBasicNumbers());
-        boolean bonusMatch = checkBonusMatch(lotto.getBasicNumbers());
+    private Result checkLotto(final Lotto lotto) {
+        int basicMatchCount = checkBasicMatchCount(lotto.getNumbers());
+        boolean bonusMatch = checkBonusMatch(lotto.getNumbers());
         return Result.of(basicMatchCount, bonusMatch);
     }
 

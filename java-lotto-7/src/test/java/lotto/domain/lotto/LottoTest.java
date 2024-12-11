@@ -13,7 +13,7 @@ class LottoTest {
     void 기본_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> {
             List<Integer> fakeLottoNumbers = FakeRandomGenerator.from(List.of(1, 2, 3, 4, 5, 6, 7)).generate();
-            BasicNumbers.from(fakeLottoNumbers);
+            Lotto.from(fakeLottoNumbers);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -32,9 +32,9 @@ class LottoTest {
         List<Integer> expectedBasicNumbers = List.of(1, 2, 3, 4, 5, 6);
 
         List<Integer> fakedLottoNumbers = FakeRandomGenerator.of(List.of(1, 2, 3, 4, 5, 6), 7).generate();
-        BasicNumbers basicNumbers = NumbersSeparator.separateLottoNumbers(fakedLottoNumbers);
+        Lotto basicNumbers = NumbersSeparator.separateLottoNumbers(fakedLottoNumbers);
 
-        Assertions.assertThat(basicNumbers.getBasicNumbers())
+        Assertions.assertThat(basicNumbers.getNumbers())
                 .isEqualTo(expectedBasicNumbers);
     }
 

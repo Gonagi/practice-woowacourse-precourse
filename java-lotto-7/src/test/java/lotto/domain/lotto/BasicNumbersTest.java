@@ -14,7 +14,7 @@ class BasicNumbersTest {
         List<Integer> fakedNumbers = FakeRandomGenerator.from(invalidNumbers).generate();
 
         org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            BasicNumbers.from(fakedNumbers);
+            Lotto.from(fakedNumbers);
         });
     }
 

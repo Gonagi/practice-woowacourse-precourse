@@ -13,17 +13,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Result;
-import lotto.domain.lotto.BasicNumbers;
+import lotto.domain.lotto.Lotto;
 
 public class OutputView {
 
-    public void printPurchaseLottos(final List<BasicNumbers> basicNumbers) {
-        System.out.printf(PURCHASED_MESSAGE.getMessage(), basicNumbers.size());
+    public void printPurchaseLottos(final List<Lotto> lottos) {
+        System.out.printf(PURCHASED_MESSAGE.getMessage(), lottos.size());
 
-        for (BasicNumbers basicNumber : basicNumbers) {
-            List<Integer> lotto = new ArrayList<>(basicNumber.getBasicNumbers());
-            Collections.sort(lotto);
-            System.out.printf("%s\n", lotto);
+        for (Lotto lotto : lottos) {
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(numbers);
+            System.out.printf("%s\n", numbers);
         }
     }
 

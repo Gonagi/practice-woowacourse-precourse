@@ -5,9 +5,9 @@ import java.util.List;
 import lotto.domain.Calculator;
 import lotto.domain.Result;
 import lotto.domain.WinnerMachine;
-import lotto.domain.lotto.BasicNumbers;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.WinnerLotto;
 import lotto.domain.lottoMachine.FakeRandomGenerator;
 import lotto.domain.lottoMachine.LottoMachine;
 import lotto.util.NumbersSeparator;
@@ -27,7 +27,7 @@ public class Controller {
 
     public void run() {
         int money = inputMoneyProcess();
-        List<BasicNumbers> purchasedLottos = purchasedLottosProcess(money);
+        List<Lotto> purchasedLottos = purchasedLottosProcess(money);
         WinnerMachine winnerMachine = createWinnerMachine();
 
         checkLottosByWinnerMachine(winnerMachine, purchasedLottos);
@@ -45,33 +45,33 @@ public class Controller {
         return 0;
     }
 
-    private List<BasicNumbers> purchasedLottosProcess(int money) {
-        List<BasicNumbers> purchasedLottos = purchaseLottos(money);
+    private List<Lotto> purchasedLottosProcess(int money) {
+        List<Lotto> purchasedLottos = purchaseLottos(money);
         outputView.printPurchaseLottos(purchasedLottos);
         System.out.println();
         return purchasedLottos;
     }
 
     private WinnerMachine createWinnerMachine() {
-        BasicNumbers winningBasicNumbers = inputWinningBasicNumbersProcess();
+        Lotto winningBasicNumbers = inputWinningBasicNumbersProcess();
         BonusNumber winningBonusNumber = inputWinningBonusNumberProcess();
-        return WinnerMachine.from(Lotto.of(winningBasicNumbers, winningBonusNumber));
+        return WinnerMachine.from(WinnerLotto.of(winningBasicNumbers, winningBonusNumber));
     }
 
-    private void checkLottosByWinnerMachine(WinnerMachine winnerMachine, List<BasicNumbers> purchasedLottos) {
+    private void checkLottosByWinnerMachine(WinnerMachine winnerMachine, List<Lotto> purchasedLottos) {
         List<Result> results = winnerMachine.checkLottos(purchasedLottos);
         outputView.printLottoResults(results);
         outputView.printRateOfRange(Calculator.calculateRateOfReturn(results));
     }
 
 
-    private BasicNumbers inputWinningBasicNumbersProcess() {
+    private Lotto inputWinningBasicNumbersProcess() {
         try {
             String inputNumbers = inputview.inputWinnerBasicNumbers();
             List<Integer> winningBasicNumbers = FakeRandomGenerator.from(
                     NumbersSeparator.splitWinningBasicNumbers(inputNumbers)).generate();
             System.out.println();
-            return BasicNumbers.from(winningBasicNumbers);
+            return Lotto.from(winningBasicNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             inputWinningBasicNumbersProcess();
@@ -92,11 +92,11 @@ public class Controller {
         return null;
     }
 
-    public List<BasicNumbers> purchaseLottos(final int money) {
-        List<BasicNumbers> purchasedLottos = new ArrayList<>();
+    public List<Lotto> purchaseLottos(final int money) {
+        List<Lotto> purchasedLottos = new ArrayList<>();
         for (int count = 0; count < money / 1000; count++) {
             List<Integer> randomNumbers = lottoMachine.generate();
-            purchasedLottos.add(BasicNumbers.from(randomNumbers));
+            purchasedLottos.add(Lotto.from(randomNumbers));
         }
 
         return purchasedLottos;
