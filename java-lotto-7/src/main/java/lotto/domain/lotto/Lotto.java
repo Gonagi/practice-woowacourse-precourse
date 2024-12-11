@@ -1,13 +1,14 @@
 package lotto.domain.lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
-    private final BasicNumbers lotto;
+    private final BasicNumbers basicNumbers;
     private final BonusNumber bonusNumber;
 
     private Lotto(final BasicNumbers lotto, final BonusNumber bonusNumber) {
-        this.lotto = lotto;
+        this.basicNumbers = lotto;
         this.bonusNumber = bonusNumber;
     }
 
@@ -15,8 +16,14 @@ public class Lotto {
         return new Lotto(lotto, bonusNumber);
     }
 
+    public List<Integer> getLottoNumbers() {
+        List<Integer> lottoNumbers = new ArrayList<>(basicNumbers.getBasicNumbers());
+        lottoNumbers.add(bonusNumber.getNumber());
+        return lottoNumbers;
+    }
+
     public List<Integer> getBasicNumbers() {
-        return lotto.getBasicNumbers();
+        return basicNumbers.getBasicNumbers();
     }
 
     public int getBonusNumber() {
