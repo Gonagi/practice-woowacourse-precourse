@@ -17,12 +17,11 @@ class WinnerMachineTest {
     @BeforeEach
     void setUp() {
         List<Integer> fakeRandomNumbers = FakeRandomGenerator.of(List.of(1, 2, 3, 4, 5, 6), 7).generate();
-        Lotto basicNumbers = NumbersSeparator.separateLottoNumbers(fakeRandomNumbers);
+        Lotto lotto = NumbersSeparator.separateLottoNumbers(fakeRandomNumbers);
         BonusNumber bonusNumber = NumbersSeparator.separateBonusNumber(fakeRandomNumbers);
-        WinnerLotto winnerLotto = WinnerLotto.of(basicNumbers, bonusNumber);
+        WinnerLotto winnerLotto = WinnerLotto.of(lotto, bonusNumber);
         winnerMachine = WinnerMachine.from(winnerLotto);
     }
-
 
     @Test
     void 로또_결과_정상_흐름() {
@@ -58,7 +57,7 @@ class WinnerMachineTest {
 
     private void addBuyLotto(List<Lotto> lottos, List<Integer> lotto) {
         List<Integer> buyNumbers = FakeRandomGenerator.from(lotto).generate();
-        Lotto basicNumbers = NumbersSeparator.separateLottoNumbers(buyNumbers);
+        Lotto basicNumbers = Lotto.from(buyNumbers);
         lottos.add(basicNumbers);
     }
 }

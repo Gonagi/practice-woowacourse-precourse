@@ -1,7 +1,10 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,6 +15,15 @@ class ResultTest {
     void 결과_정상_흐름(int matchBasicCount, boolean matchBonus, Result rank) {
         Assertions.assertThat(Result.of(matchBasicCount, matchBonus))
                 .isEqualTo(rank);
+    }
+
+    @Test
+    void 백분율_계산기_정상_흐름() {
+        String expectedReturnOfRate = "50000125.0";
+        List<Result> results = new ArrayList<>(List.of(Result.FIRST, Result.FIFTH, Result.NOTHING, Result.NOTHING));
+
+        Assertions.assertThat(Result.calculateRateOfReturn(results))
+                .isEqualTo(expectedReturnOfRate);
     }
 
     private static Stream<Arguments> resultTestCases() {

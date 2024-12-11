@@ -2,7 +2,6 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Calculator;
 import lotto.domain.Result;
 import lotto.domain.WinnerMachine;
 import lotto.domain.lotto.BonusNumber;
@@ -61,7 +60,7 @@ public class Controller {
     private void checkLottosByWinnerMachine(WinnerMachine winnerMachine, List<Lotto> purchasedLottos) {
         List<Result> results = winnerMachine.checkLottos(purchasedLottos);
         outputView.printLottoResults(results);
-        outputView.printRateOfRange(Calculator.calculateRateOfReturn(results));
+        outputView.printRateOfRange(Result.calculateRateOfReturn(results));
     }
 
 
@@ -69,7 +68,7 @@ public class Controller {
         try {
             String inputNumbers = inputview.inputWinnerBasicNumbers();
             List<Integer> winningBasicNumbers = FakeRandomGenerator.from(
-                    NumbersSeparator.splitWinningBasicNumbers(inputNumbers)).generate();
+                    NumbersSeparator.splitWinningLottoInput(inputNumbers)).generate();
             System.out.println();
             return Lotto.from(winningBasicNumbers);
         } catch (IllegalArgumentException e) {

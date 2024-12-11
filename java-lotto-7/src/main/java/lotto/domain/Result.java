@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public enum Result {
@@ -26,6 +27,18 @@ public enum Result {
                 .filter(rank -> rank.matchingRank(matchBasicCount, matchBonus))
                 .findFirst()
                 .orElse(NOTHING);
+    }
+
+    public static String calculateRateOfReturn(final List<Result> results) {
+        long prizeSum = getPrizeSum(results);
+        int size = results.size();
+        return String.format("%.1f", (double) prizeSum / (size * 10));
+    }
+
+    private static long getPrizeSum(final List<Result> results) {
+        return results.stream()
+                .mapToLong(Result::getPrizeMoney)
+                .sum();
     }
 
     private boolean matchingRank(final int matchBasicCount, final boolean matchBonus) {

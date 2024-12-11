@@ -15,12 +15,6 @@ public class WinnerLotto {
         return new WinnerLotto(winninglotto, bonusNumber);
     }
 
-//    public List<Integer> getLottoNumbers() {
-//        List<Integer> lottoNumbers = new ArrayList<>(winninglotto.getNumbers());
-//        lottoNumbers.add(bonusNumber.getNumber());
-//        return lottoNumbers;
-//    }
-
     public List<Integer> getBasicNumbers() {
         return winninglotto.getNumbers();
     }

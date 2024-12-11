@@ -22,7 +22,7 @@ public class NumbersSeparator {
         return BonusNumber.from(numbers.getLast());
     }
 
-    public static List<Integer> splitWinningBasicNumbers(final String winningBasicNumbers) {
+    public static List<Integer> splitWinningLottoInput(final String winningBasicNumbers) {
         String[] basicNumbers = winningBasicNumbers.split(COMMA);
         return Arrays.stream(basicNumbers)
                 .map(Integer::parseInt)
