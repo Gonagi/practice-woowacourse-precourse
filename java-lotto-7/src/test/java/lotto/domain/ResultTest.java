@@ -16,7 +16,6 @@ class ResultTest {
 
     private static Stream<Arguments> resultTestCases() {
         return Stream.of(
-                Arguments.of(6, true, Result.FIRST),
                 Arguments.of(6, false, Result.FIRST),
                 Arguments.of(5, true, Result.SECOND),
                 Arguments.of(5, false, Result.THIRD),

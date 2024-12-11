@@ -9,7 +9,7 @@ public class RealRandomGenerator implements LottoMachine {
 
     @Override
     public List<Integer> generate() {
-        List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 7);
+        List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         validateLottoNumbers(uniqueNumbers);
         return uniqueNumbers;
     }
