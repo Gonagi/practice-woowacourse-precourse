@@ -44,13 +44,13 @@ public class Store {
 
     private void validateUnderZeroMoney(final int money) {
         if (money < 1000) {
-            throw new IllegalArgumentException(NON_ENOUGH_MONEY.getMessage());
+            throw new IllegalArgumentException(NON_ENOUGH_MONEY.getErrorMessage());
         }
     }
 
     private void validate1000UnitMoney(final int money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException(NON_THOUSAND_UNIT_MONEY.getMessage());
+            throw new IllegalArgumentException(NON_THOUSAND_UNIT_MONEY.getErrorMessage());
         }
     }
 }

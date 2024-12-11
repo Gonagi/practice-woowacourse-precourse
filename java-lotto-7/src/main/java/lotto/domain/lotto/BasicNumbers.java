@@ -2,6 +2,7 @@ package lotto.domain.lotto;
 
 import static lotto.constants.Messages.INVALID_LOTTO_SIZE;
 
+import java.util.Collections;
 import java.util.List;
 
 public class BasicNumbers {
@@ -17,12 +18,12 @@ public class BasicNumbers {
     }
 
     public List<Integer> getBasicNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 
     private void validateBasicNumbersSize(final List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getErrorMessage());
         }
     }
 }

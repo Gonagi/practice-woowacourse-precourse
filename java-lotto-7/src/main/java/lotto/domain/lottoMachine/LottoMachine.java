@@ -18,7 +18,7 @@ public interface LottoMachine {
     private void validateLottoRange(final List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
+                throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getErrorMessage());
             }
         }
     }
@@ -28,7 +28,7 @@ public interface LottoMachine {
 
         for (Integer number : numbers) {
             if (!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
+                throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getErrorMessage());
             }
         }
     }
