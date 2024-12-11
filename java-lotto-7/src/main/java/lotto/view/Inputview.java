@@ -23,6 +23,7 @@ public class Inputview {
         System.out.println(INPUT_BASIC_NUMBERS.getMessage());
         String winningBasicNumbers = Console.readLine();
         validateBasicNumbers(winningBasicNumbers);
+        System.out.println();
         return winningBasicNumbers;
     }
 
@@ -34,6 +35,7 @@ public class Inputview {
     private int inputNumber() {
         String inputBonusNumber = Console.readLine();
         validateNumber(inputBonusNumber);
+        System.out.println();
         return Integer.parseInt(inputBonusNumber);
     }
 

@@ -25,6 +25,7 @@ public class OutputView {
             Collections.sort(numbers);
             System.out.printf("%s\n", numbers);
         }
+        System.out.println();
     }
 
     public void printLottoResults(final List<Result> results) {
