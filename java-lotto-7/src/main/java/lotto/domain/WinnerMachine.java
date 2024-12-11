@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.function.Predicate;
+import lotto.domain.lotto.BasicNumbers;
 import lotto.domain.lotto.Lotto;
 
 public class WinnerMachine {
@@ -15,15 +16,15 @@ public class WinnerMachine {
         return new WinnerMachine(winnerLotto);
     }
 
-    public List<Result> checkLottos(final List<Lotto> lottos) {
+    public List<Result> checkLottos(final List<BasicNumbers> lottos) {
         return lottos.stream()
                 .map(this::checkLotto)
                 .toList();
     }
 
-    private Result checkLotto(final Lotto lotto) {
+    private Result checkLotto(final BasicNumbers lotto) {
         int basicMatchCount = checkBasicMatchCount(lotto.getBasicNumbers());
-        boolean bonusMatch = checkBonusMatch(lotto.getLottoNumbers());
+        boolean bonusMatch = checkBonusMatch(lotto.getBasicNumbers());
         return Result.of(basicMatchCount, bonusMatch);
     }
 
