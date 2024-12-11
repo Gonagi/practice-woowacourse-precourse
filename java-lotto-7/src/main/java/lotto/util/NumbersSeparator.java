@@ -2,19 +2,20 @@ package lotto.util;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.BasicNumbers;
+import lotto.domain.lotto.BonusNumber;
 
 public class NumbersSeparator {
-    public static Lotto separateLottoNumbers(final List<Integer> numbers) {
+    public static BasicNumbers separateLottoNumbers(final List<Integer> numbers) {
         if (numbers.size() == 6) {
-            return Lotto.createLotto(numbers);
+            return BasicNumbers.from(numbers);
         }
         List<Integer> lottoNumbers = new ArrayList<>(numbers);
         lottoNumbers.removeLast();
-        return Lotto.createLotto(lottoNumbers);
+        return BasicNumbers.from(lottoNumbers);
     }
 
-    public static int separateBonusNumber(final List<Integer> numbers) {
-        return numbers.getLast();
+    public static BonusNumber separateBonusNumber(final List<Integer> numbers) {
+        return BonusNumber.from(numbers.getLast());
     }
 }

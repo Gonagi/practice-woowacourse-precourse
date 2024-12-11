@@ -1,28 +1,25 @@
 package lotto.domain.lotto;
 
-import static lotto.constants.Messages.INVALID_LOTTO_SIZE;
-
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final BasicNumbers lotto;
+    private final BonusNumber bonusNumber;
 
-    private Lotto(final List<Integer> numbers) {
-        validateLottoSize(numbers);
-        this.numbers = numbers;
+    private Lotto(final BasicNumbers lotto, final BonusNumber bonusNumber) {
+        this.lotto = lotto;
+        this.bonusNumber = bonusNumber;
     }
 
-    public static Lotto createLotto(final List<Integer> numbers) {
-        return new Lotto(numbers);
+    public static Lotto of(final BasicNumbers lotto, final BonusNumber bonusNumber) {
+        return new Lotto(lotto, bonusNumber);
     }
 
     public List<Integer> getLottoNumbers() {
-        return numbers;
+        return lotto.getBasicNumbers();
     }
 
-    private void validateLottoSize(final List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
-        }
+    public int getBonusNumber() {
+        return bonusNumber.getNumber();
     }
 }
