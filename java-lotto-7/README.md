@@ -9,16 +9,17 @@
 
 ### 로또
 
-- 기본 번호와 보너스 번호로 로또를 생성한다
 - 로또 번호를 반환한다
-- 기본 번호를 반환한다
+
+### 보너스 번호
+
 - 보너스 번호를 반환한다
 
-- #### 기본 번호
-    - 기본 번호를 반환한다
+### 당첨 로또
 
-- #### 보너스 번호
-    - 보너스 번호를 반환한다
+- 기본 번호와 보너스 번호로 로또를 생성한다
+- 기본 번호를 반환한다
+- 보너스 번호를 반환한다
 
 ### 로또 머신
 
@@ -65,7 +66,7 @@
 - 0 이하 정수가 입력되면 오류가 발생한다
 - 1,000 단위로 나눠지지 않는 구입 금액이 입력되면 오류가 발생한다
 
-### 기본 번호
+### 로또
 
 - 생성한 로또 번호 개수가 6개가 아니면 오류가 발생한다
 
@@ -85,3 +86,35 @@
 
 - #### 보너스 번호
     - null, 빈 입력, 또는 숫자가 아닌 다른 것이 입력되면 오류가 발생한다
+
+---
+
+## 파일 구조
+
+```
+lotto
+  ├── Application.java
+  ├── config
+  │   └── AppConfig.java
+  ├── constants
+  │   └── Messages.java
+  ├── controller
+  │   └── Controller.java
+  ├── domain
+  │   ├── Result.java
+  │   ├── Store.java
+  │   ├── WinnerMachine.java
+  │   ├── lotto
+  │   │   ├── BonusNumber.java
+  │   │   ├── Lotto.java
+  │   │   └── WinnerLotto.java
+  │   └── lottoMachine
+  │       ├── FakeRandomGenerator.java
+  │       ├── LottoMachine.java
+  │       └── RealRandomGenerator.java
+  ├── util
+  │   └── NumbersSeparator.java
+  └── view
+      ├── Inputview.java
+      └── OutputView.java
+```
