@@ -1,5 +1,7 @@
 package store.util;
 
+import static store.constants.Constants.COMMA;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -13,7 +15,6 @@ import store.domain.promotion.Promotion;
 import store.domain.promotion.Promotions;
 
 public final class FileUtils {
-    private static final String COMMA = ",";
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private FileUtils() {
