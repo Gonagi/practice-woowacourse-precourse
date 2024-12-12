@@ -1,6 +1,7 @@
 package store.controller;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
 import store.domain.Receipt;
 import store.domain.Store;
@@ -26,17 +27,16 @@ public class Controller {
             String inputProducts = retryOnException(inputView::inputProducts);
             Receipt receipt = buyProducts(Translator.getProductsByStrings(inputProducts));
 
-//            String membershipAnswer = retryOnException(inputView::inputMemberShip);
+            String membershipAnswer = retryOnException(inputView::inputMemberShip);
 //            String getMoreProductsAnswer = retryOnException(() -> inputView.inputGetMoreProducts(product));
 //            String promotionApplyAnswer = retryOnException(() -> inputView.inputPromotionApply(product));
-//
-//            String inputAdditionalPurchaseAnswer = retryOnException(inputView::inputAdditionalPurchase);
-//
-//            outputView.printReceiptMessage(store.getReceipt());
-//
-//            if (Objects.equals(inputAdditionalPurchaseAnswer, "Y")) {
-//                break;
-//            }
+
+            outputView.printReceiptMessage(store.getReceipt());
+
+            String inputAdditionalPurchaseAnswer = retryOnException(inputView::inputAdditionalPurchase);
+            if (Objects.equals(inputAdditionalPurchaseAnswer, "N")) {
+                break;
+            }
         }
     }
 

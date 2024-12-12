@@ -33,6 +33,11 @@ public class Product {
         this.quantity += product.getQuantity();
     }
 
+    public Product changeQuantity(final Product exchangeProduct) {
+        this.quantity = exchangeProduct.getQuantity();
+        return this;
+    }
+
     public String getName() {
         return name;
     }

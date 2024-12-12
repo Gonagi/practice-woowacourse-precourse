@@ -25,7 +25,7 @@ public class Store {
 
     private void buyBasicProducts(Product product) {
         Product basicProduct = findBasicProduct(product);
-//        receipt.update(basicProduct);
+        receipt.addPurchaseProducts(basicProduct);
     }
 
     private void buyPromotionAndBasicProducts(Product product) {
@@ -39,7 +39,9 @@ public class Store {
     }
 
     private Product findBasicProduct(final Product findProduct) {
-        return storage.findBasicProduct(findProduct);
+        Product product = storage.findBasicProduct(findProduct);
+        product.changeQuantity(findProduct);
+        return product;
     }
 
     public Receipt getReceipt() {
