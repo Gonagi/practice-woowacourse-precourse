@@ -17,19 +17,19 @@ public class OutputView {
         }
     }
 
-    public void printReceiptMessage(final Receipt receipt) {
+    public void printReceiptMessage(final Receipt receipt, final String membershipAnswer) {
         printPurchaseReceipt(receipt);
         printAdditonalRecipt(receipt);
-        printMoneyRecipt(receipt);
+        printMoneyRecipt(receipt, membershipAnswer);
         System.out.println();
     }
 
-    private void printMoneyRecipt(final Receipt receipt) {
+    private void printMoneyRecipt(final Receipt receipt, final String membershipAnswer) {
         System.out.println("====================================");
         System.out.printf("총구매액\t\t%d\t%,d\n", receipt.getPurchaseProductsCount(), receipt.getPurchaseProductsPrice());
         System.out.printf("행사할인\t\t\t-%,d\n", receipt.getAdditionalProductsPrice());
-        System.out.printf("멤버십할인\t\t\t-%,d\n", receipt.getMembershipPrice());
-        System.out.printf("내실돈\t\t\t %,d\n", receipt.getTotalPrice());
+        System.out.printf("멤버십할인\t\t\t-%,d\n", receipt.getMembershipPrice(membershipAnswer));
+        System.out.printf("내실돈\t\t\t %,d\n", receipt.getTotalPrice(membershipAnswer));
     }
 
     private void printAdditonalRecipt(final Receipt receipt) {

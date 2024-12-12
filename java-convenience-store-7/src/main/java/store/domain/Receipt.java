@@ -44,7 +44,10 @@ public class Receipt {
                 .sum();
     }
 
-    public int getMembershipPrice() {
+    public int getMembershipPrice(final String membershipAnswer) {
+        if (Objects.equals("N", membershipAnswer)) {
+            return 0;
+        }
         int membershipableMoney = getPurchaseProductsPrice() - getAdditionalProductsPrice();
         int membershipMoney = (int) (membershipableMoney * 0.3);
         if (membershipMoney < 8000) {
@@ -53,8 +56,8 @@ public class Receipt {
         return 8000;
     }
 
-    public int getTotalPrice() {
-        return getPurchaseProductsPrice() - getAdditionalProductsPrice() - getMembershipPrice();
+    public int getTotalPrice(final String membershipAnswer) {
+        return getPurchaseProductsPrice() - getAdditionalProductsPrice() - getMembershipPrice(membershipAnswer);
     }
 
     public Set<Product> getPurchaseProducts() {

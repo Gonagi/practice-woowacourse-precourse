@@ -31,7 +31,7 @@ public class Controller {
 //            String getMoreProductsAnswer = retryOnException(() -> inputView.inputGetMoreProducts(product));
 //            String promotionApplyAnswer = retryOnException(() -> inputView.inputPromotionApply(product));
 
-            outputView.printReceiptMessage(store.getReceipt());
+            outputView.printReceiptMessage(store.getReceipt(), membershipAnswer);
 
             String inputAdditionalPurchaseAnswer = retryOnException(inputView::inputAdditionalPurchase);
             if (Objects.equals(inputAdditionalPurchaseAnswer, "N")) {
