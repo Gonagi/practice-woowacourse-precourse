@@ -16,7 +16,7 @@ public class Store {
     }
 
     public void buyProduct(final Product product) {
-        if (product.checkPromotionDate()) {
+        if (product.getPromotion() != null && product.checkPromotionDate()) {
             buyPromotionAndBasicProducts(product);
             return;
         }
@@ -25,13 +25,13 @@ public class Store {
 
     private void buyBasicProducts(Product product) {
         Product basicProduct = findBasicProduct(product);
-        receipt.update(basicProduct);
+//        receipt.update(basicProduct);
     }
 
     private void buyPromotionAndBasicProducts(Product product) {
         Product promotionProduct = findPromotionProduct(product);
         Product basicProduct = findBasicProduct(product);
-        receipt.update(promotionProduct, basicProduct);
+//        receipt.update(promotionProduct, basicProduct);
     }
 
     private Product findPromotionProduct(final Product findProduct) {
