@@ -34,19 +34,16 @@ public class InputView {
 
     public String inputPromotionApply(final Product product) {
         System.out.printf(NO_APPLY_PROMOTION_PRODUCT.getMessage(), product.getName(), product.getQuantity());
-        System.out.println();
         return inputAnswer();
     }
 
     public String inputMemberShip() {
         System.out.println(MEMBERSHIP_MESSAGE.getMessage());
-        System.out.println();
         return inputAnswer();
     }
 
     public String inputAdditionalPurchase() {
         System.out.println(ADDITIONAL_PURCHASE_MESSAGE.getMessage());
-        System.out.println();
         return inputAnswer();
     }
 
