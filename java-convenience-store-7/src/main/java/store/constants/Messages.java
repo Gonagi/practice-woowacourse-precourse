@@ -7,7 +7,7 @@ public enum Messages {
     GET_MORE_PRODUCTS("현재 %s는) %d개를 무료로 더 받을 수 있습니다. 추가하시겠습니까? (Y/N)\n"),
     MEMBERSHIP_MESSAGE("멤버십 할인을 받으시겠습니까? (Y/N)"),
     ADDITIONAL_PURCHASE_MESSAGE("감사합니다. 구매하고 싶은 다른 상품이 있나요? (Y/N)"),
-    START_MESSAGE("안녕하세요. W편의점입니다.\n" + "현재 보유하고 있는 상품입니다.\n\n"),
+    START_MESSAGE("안녕하세요. W편의점입니다.\n" + "현재 보유하고 있는 상품입니다.\n"),
     PROMOTION_PRODUCTS_STOCK_MESSAGE("- %s %,d원 %d개 %s\n"),
     BASIC_PRODUCTS_WITH_NO_STOCK_MESSAGE("- %s %,d원 재고 없음\n"),
     BASIC_PRODUCTS_STOCK_MESSAGE("- %s %,d원 %d개\n"),
@@ -17,7 +17,7 @@ public enum Messages {
     NO_QUANTITY("재고 수량을 초과하여 구매할 수 없습니다. 다시 입력해 주세요."),
     INVALID_PURCHASE_FORMAT("올바르지 않은 형식으로 입력했습니다. 다시 입력해 주세요."),
     INVALID_INPUT_FORMAT("잘못된 입력입니다. 다시 입력해 주세요."),
-    INVALID_PROMOTION("존재하지 않는 프로모션입니다.");
+    INVALID_FILE_PATH("파일 경로에 오류가 있습니다.");
 
     private final String message;
 

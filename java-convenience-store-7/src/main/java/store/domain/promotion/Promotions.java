@@ -1,7 +1,5 @@
 package store.domain.promotion;
 
-import static store.constants.Messages.INVALID_PROMOTION;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +19,7 @@ public class Promotions {
         return promotions.stream()
                 .filter(promotion -> Objects.equals(promotion.getName(), name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(INVALID_PROMOTION.getErrorMessage()));
+                .orElse(null);
     }
 
     public List<Promotion> getPromotions() {
