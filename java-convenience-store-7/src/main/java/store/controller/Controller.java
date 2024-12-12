@@ -3,7 +3,6 @@ package store.controller;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
-import store.domain.Receipt;
 import store.domain.Store;
 import store.domain.product.Product;
 import store.util.Translator;
@@ -24,12 +23,11 @@ public class Controller {
     public void run() {
         while (true) {
             outputView.printStorageMessage(store.getStorage());
-            String inputProducts = retryOnException(inputView::inputProducts);
-            Receipt receipt = buyProducts(Translator.getProductsByStrings(inputProducts));
+            buyProductsProcess();
 
-            String membershipAnswer = retryOnException(inputView::inputMemberShip);
 //            String getMoreProductsAnswer = retryOnException(() -> inputView.inputGetMoreProducts(product));
 //            String promotionApplyAnswer = retryOnException(() -> inputView.inputPromotionApply(product));
+            String membershipAnswer = retryOnException(inputView::inputMemberShip);
 
             outputView.printReceiptMessage(store.getReceipt(), membershipAnswer);
 
@@ -40,15 +38,18 @@ public class Controller {
         }
     }
 
+    private void buyProductsProcess() {
+        retryOnException(() -> {
+            String inputProducts = inputView.inputProducts();
+            buyProducts(Translator.getProductsByStrings(inputProducts));
+            return null;
+        });
+    }
 
-    private Receipt buyProducts(final List<Product> products) {
+    private void buyProducts(final List<Product> products) {
         for (Product product : products) {
-            retryOnException(() -> {
-                store.buyProduct(product);
-                return null;
-            });
+            store.buyProduct(product);
         }
-        return store.getReceipt();
     }
 
     private <T> T retryOnException(final Supplier<T> task) {
