@@ -10,15 +10,6 @@ import store.domain.Receipt;
 import store.domain.Storage;
 
 public class OutputView {
-    /*
-    환영 인사와 함께 상품명, 가격, 프로모션 이름, 재고를 안내한다
-재고가 0개라면 재고없음을 출력한다
-부족한 수량에 대한 추가 여부 질문을 한다
-프로모션 재고 부족으로 인해 일부 수량에 대해 정가로 결제할지 여부를 질문한다
-멤버십 할인 적용 여부를 질문한다
-구매 상품 내역, 증정 상품 내역, 금액 정보를 출력한다
-추가 구매 여부에 대한 질문을 한다
-     */
     public void printStorageMessage(final Storage storage) {
         System.out.println(START_MESSAGE.getMessage());
         for (Product product : storage.getProducts()) {
