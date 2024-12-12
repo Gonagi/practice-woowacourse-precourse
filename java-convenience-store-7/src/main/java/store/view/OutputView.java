@@ -26,16 +26,16 @@ public class OutputView {
 
     private void printMoneyRecipt(final Receipt receipt) {
         System.out.println("====================================");
-        System.out.printf("총구매액\t\t%d\t%,d", receipt.getPurchaseProductsCount(), receipt.getPurchaseProductsPrice());
-        System.out.printf("행사할인\t\t\t-%,d", receipt.getAdditionalProductsPrice());
-        System.out.printf("멤버십할인\t\t\t-%,d", receipt.getMembershipPrice());
-        System.out.printf("내실돈\t\t\t %,d", receipt.getTotalPrice());
+        System.out.printf("총구매액\t\t%d\t%,d\n", receipt.getPurchaseProductsCount(), receipt.getPurchaseProductsPrice());
+        System.out.printf("행사할인\t\t\t-%,d\n", receipt.getAdditionalProductsPrice());
+        System.out.printf("멤버십할인\t\t\t-%,d\n", receipt.getMembershipPrice());
+        System.out.printf("내실돈\t\t\t %,d\n", receipt.getTotalPrice());
     }
 
     private void printAdditonalRecipt(final Receipt receipt) {
         System.out.println("=============증\t정===============");
         for (Product product : receipt.getAdditionalProducts()) {
-            System.out.printf("%s\t\t%d", product.getName(), product.getQuantity());
+            System.out.printf("%s\t\t%d\n", product.getName(), product.getQuantity());
         }
     }
 
@@ -43,7 +43,7 @@ public class OutputView {
         System.out.println("==============W 편의점================");
         System.out.println("상품명\t\t수량\t금액");
         for (Product product : receipt.getPurchaseProducts()) {
-            System.out.printf("%s\t\t%d \t%,d", product.getName(), product.getQuantity(),
+            System.out.printf("%s\t\t%d \t%,d\n", product.getName(), product.getQuantity(),
                     product.getQuantity() * product.getPrice());
         }
     }
