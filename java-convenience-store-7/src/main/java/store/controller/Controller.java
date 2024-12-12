@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import store.domain.Receipt;
 import store.domain.Store;
 import store.domain.product.Product;
+import store.util.Translator;
 import store.view.InputView;
 import store.view.OutputView;
 
@@ -23,7 +24,7 @@ public class Controller {
         while (true) {
             outputView.printStorageMessage(store.getStorage());
             String inputProducts = retryOnException(inputView::inputProducts);
-//            retryOnException(buyProducts(inputProducts));
+            Receipt receipt = buyProducts(Translator.getProductsByStrings(inputProducts));
 
 //            String membershipAnswer = retryOnException(inputView::inputMemberShip);
 //            String getMoreProductsAnswer = retryOnException(() -> inputView.inputGetMoreProducts(product));
@@ -42,7 +43,10 @@ public class Controller {
 
     private Receipt buyProducts(final List<Product> products) {
         for (Product product : products) {
-            store.buyProduct(product);
+            retryOnException(() -> {
+                store.buyProduct(product);
+                return null;
+            });
         }
         return store.getReceipt();
     }
