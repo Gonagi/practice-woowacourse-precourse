@@ -5,9 +5,9 @@ import static store.constants.Messages.BASIC_PRODUCTS_WITH_NO_STOCK_MESSAGE;
 import static store.constants.Messages.PROMOTION_PRODUCTS_STOCK_MESSAGE;
 import static store.constants.Messages.START_MESSAGE;
 
-import store.domain.Product;
 import store.domain.Receipt;
 import store.domain.Storage;
+import store.domain.product.Product;
 
 public class OutputView {
     public void printStorageMessage(final Storage storage) {

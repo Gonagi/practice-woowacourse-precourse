@@ -11,7 +11,7 @@ import static store.constants.Messages.NO_APPLY_PROMOTION_PRODUCT;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Optional;
 import java.util.regex.Pattern;
-import store.domain.Product;
+import store.domain.product.Product;
 
 public class InputView {
     private static final String PRODUCTS_INPUT_REGEX = "([[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+?-\\d],+)*([[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+?-\\d])";

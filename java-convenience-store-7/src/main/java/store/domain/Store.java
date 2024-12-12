@@ -1,5 +1,7 @@
 package store.domain;
 
+import store.domain.product.Product;
+
 public class Store {
     private final Receipt receipt;
     private final Storage storage;
@@ -42,5 +44,9 @@ public class Store {
 
     public Receipt getReceipt() {
         return receipt;
+    }
+
+    public Storage getStorage() {
+        return storage;
     }
 }

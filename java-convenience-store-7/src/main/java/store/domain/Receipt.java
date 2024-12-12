@@ -3,6 +3,7 @@ package store.domain;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import store.domain.product.Product;
 
 public class Receipt {
     private Set<Product> purchaseProducts;

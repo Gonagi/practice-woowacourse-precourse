@@ -1,24 +1,21 @@
-package store.domain;
+package store.domain.product;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import store.domain.promotion.Promotion;
 import store.util.Translator;
 
 public class Product {
     private final String name;
     private final int price;
-    private final Promotion promotion;
     private int quantity;
+    private final Promotion promotion;
 
-    private Product(final String name, final int price, final int quantity, final Promotion promotion) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-        this.promotion = promotion;
-    }
-
-    public static Product of(final String name, final int price, final int quantity, final Promotion promotion) {
-        return new Product(name, price, quantity, promotion);
+    private Product(final Builder builder) {
+        this.name = builder.name;
+        this.price = builder.price;
+        this.quantity = builder.quantity;
+        this.promotion = builder.promotion;
     }
 
     public boolean checkPromotionDate() {
@@ -71,5 +68,31 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public static class Builder {
+        String name;
+        int price;
+        int quantity;
+        Promotion promotion;
+
+        public Builder(final String name, final int quantity) {
+            this.name = name;
+            this.quantity = quantity;
+        }
+
+        public Builder price(final int price) {
+            this.price = price;
+            return this;
+        }
+
+        public Builder promotion(final Promotion promotion) {
+            this.promotion = promotion;
+            return this;
+        }
+
+        public Product build() {
+            return new Product(this);
+        }
     }
 }
