@@ -1,6 +1,9 @@
 package store.domain;
 
+import static store.constants.Messages.NO_QUANTITY;
+
 import store.domain.product.Product;
+import store.domain.product.Product.Builder;
 
 public class Store {
     private final Receipt receipt;
@@ -23,8 +26,9 @@ public class Store {
         buyBasicProducts(product);
     }
 
-    private void buyBasicProducts(Product product) {
+    private void buyBasicProducts(final Product product) {
         Product basicProduct = findBasicProduct(product);
+
         receipt.addPurchaseProducts(basicProduct);
     }
 
@@ -40,8 +44,16 @@ public class Store {
 
     private Product findBasicProduct(final Product findProduct) {
         Product product = storage.findBasicProduct(findProduct);
-        product.changeQuantity(findProduct);
-        return product;
+        validateStock(findProduct, product);
+        product.reduceQuantity(findProduct);
+        return new Builder(product.getName(), findProduct.getQuantity())
+                .price(product.getPrice()).build();
+    }
+
+    private void validateStock(final Product findProduct, final Product product) {
+        if (product.getQuantity() < findProduct.getQuantity()) {
+            throw new IllegalArgumentException(NO_QUANTITY.getErrorMessage());
+        }
     }
 
     public Receipt getReceipt() {

@@ -33,9 +33,8 @@ public class Product {
         this.quantity += product.getQuantity();
     }
 
-    public Product changeQuantity(final Product exchangeProduct) {
-        this.quantity = exchangeProduct.getQuantity();
-        return this;
+    public void reduceQuantity(final Product exchangeProduct) {
+        this.quantity -= exchangeProduct.getQuantity();
     }
 
     public String getName() {
