@@ -7,6 +7,10 @@ public enum Messages {
     GET_MORE_PRODUCTS("현재 %s는) %d개를 무료로 더 받을 수 있습니다. 추가하시겠습니까? (Y/N)\n"),
     MEMBERSHIP_MESSAGE("멤버십 할인을 받으시겠습니까? (Y/N)"),
     ADDITIONAL_PURCHASE_MESSAGE("감사합니다. 구매하고 싶은 다른 상품이 있나요? (Y/N)"),
+    START_MESSAGE("안녕하세요. W편의점입니다.\n" + "현재 보유하고 있는 상품입니다.\n\n"),
+    PROMOTION_PRODUCTS_STOCK_MESSAGE("- %s %,d원 %d개 %s\n"),
+    BASIC_PRODUCTS_WITH_NO_STOCK_MESSAGE("- %s %,d원 재고 없음\n"),
+    BASIC_PRODUCTS_STOCK_MESSAGE("- %s %,d원 %d개\n"),
 
     // error
     NON_EXIST_PRODUCT("존재하지 않는 상품입니다. 다시 입력해 주세요."),
