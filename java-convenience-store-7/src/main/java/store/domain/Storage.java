@@ -1,6 +1,5 @@
 package store.domain;
 
-import static store.constants.Messages.INVALID_PROMOTION;
 import static store.constants.Messages.NON_EXIST_PRODUCT;
 
 import java.io.FileNotFoundException;
