@@ -14,7 +14,8 @@ import java.util.regex.Pattern;
 import store.domain.product.Product;
 
 public class InputView {
-    private static final String PRODUCTS_INPUT_REGEX = "([[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+?-\\d],+)*([[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+?-\\d])";
+    private static final String PRODUCTS_INPUT_REGEX = "(\\[[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+\\-{1}\\d+\\],{1})*(\\[[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+\\-{1}\\d+\\])+";
+
     private static final String ANSWER_REGEX = "^[YN]$";
 
     public String inputProducts() {
