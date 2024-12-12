@@ -15,7 +15,6 @@ public class OutputView {
         for (Product product : storage.getProducts()) {
             printProduct(product);
         }
-        System.out.println();
     }
 
     public void printReceiptMessage(final Receipt receipt) {
