@@ -51,8 +51,10 @@ public class Storage {
         return promotions.getPromotions();
     }
 
-    private static Products getProducts(String productFilePath, Promotions promotions) throws FileNotFoundException {
+    private static Products getProducts(String productFilePath, Promotions promotions)
+            throws FileNotFoundException {
         List<String> productLines = FileUtils.readLinesFromFile(productFilePath);
+        productLines.removeFirst();
         List<Product> productList = productLines.stream()
                 .map(productLine -> FileUtils.lineToProduct(productLine, promotions))
                 .toList();
@@ -61,6 +63,7 @@ public class Storage {
 
     private static Promotions getPromotions(String promotionFilePath) throws FileNotFoundException {
         List<String> promotionLines = FileUtils.readLinesFromFile(promotionFilePath);
+        promotionLines.removeFirst();
         List<Promotion> promotionList = promotionLines.stream()
                 .map(FileUtils::lineToPromotion)
                 .toList();
