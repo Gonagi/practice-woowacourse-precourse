@@ -27,8 +27,7 @@ public class InputView {
     }
 
     public String inputGetMoreProducts(final Product product) {
-        System.out.printf(GET_MORE_PRODUCTS.getMessage(), product.getName(), product.getQuantity());
-        System.out.println();
+        System.out.printf(GET_MORE_PRODUCTS.getMessage(), product.getName(), product.getPromotionGet());
         return inputAnswer();
     }
 

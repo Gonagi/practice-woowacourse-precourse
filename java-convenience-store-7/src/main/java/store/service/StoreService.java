@@ -1,8 +1,9 @@
 package store.service;
 
-import static store.constants.Messages.GET_MORE_PRODUCTS;
 import static store.constants.Messages.NO_QUANTITY;
+import static store.util.ExceptionRetryHandler.retryOnException;
 
+import java.util.Objects;
 import store.domain.Receipt;
 import store.domain.Storage;
 import store.domain.Store;
@@ -45,12 +46,16 @@ public class StoreService {
 
     private void buyPromotionAndBasicProducts(final Product product) {
         Product promotionProduct = getStorage().findPromotionProduct(product);
-        if (promotionProduct.calculateBuyQuantity(product) == product.getQuantity()) {
-            throw new IllegalArgumentException(String.format(GET_MORE_PRODUCTS.getMessage(),
-                    product.getName(), product.getPromotionGet()));
+
+        if (promotionProduct.calculateBuyQuantity(product) == product.getQuantity()) { // 프로모션 덜 가져옴
+            String inputGetMoreProductsAnswer = retryOnException(
+                    () -> inputView.inputGetMoreProducts(promotionProduct));
+            if (Objects.equals(inputGetMoreProductsAnswer, "Y")) { // 더 가져감
+                product.addQuantity(new Builder(product.getName(), 1).build());
+            }
         }
 
-        if (checkPromotionStock(promotionProduct, product)) { //  추가 구매 필요 X
+        if (checkPromotionStock(promotionProduct, product)) { //  기본 상품 추가 구매 필요 X
             promotionProduct.reduceQuantity(product);
             updateReceipt(product, promotionProduct);
             return;
