@@ -6,33 +6,26 @@ import java.io.FileNotFoundException;
 import store.controller.Controller;
 import store.domain.Storage;
 import store.domain.Store;
+import store.service.StoreService;
 import store.view.InputView;
 import store.view.OutputView;
 
 public class AppConfig {
     private static final String PROMOTION_FILE_PATH = "java-convenience-store-7/src/main/resources/promotions.md";
     private static final String PRODUCT_FILE_PATH = "java-convenience-store-7/src/main/resources/products.md";
-    private final Store store;
+    private final StoreService storeService;
     private final InputView inputview;
     private final OutputView outputView;
 
 
     public AppConfig() {
-        this.store = store();
-        this.inputview = inputview();
-        this.outputView = outputView();
+        this.inputview = new InputView();
+        this.outputView = new OutputView();
+        this.storeService = new StoreService(store(), inputview);
     }
 
     public Controller controller() {
-        return new Controller(store, inputview, outputView);
-    }
-
-    public InputView inputview() {
-        return new InputView();
-    }
-
-    public OutputView outputView() {
-        return new OutputView();
+        return new Controller(storeService, inputview, outputView);
     }
 
     public Storage storage() throws FileNotFoundException {

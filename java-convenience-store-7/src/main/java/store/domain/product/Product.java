@@ -74,7 +74,7 @@ public class Product {
         return promotion.getName();
     }
 
-    private int calculateBuyQuantity(final Product product) {
+    public int calculateBuyQuantity(final Product product) {
         return product.getQuantity() / (getPromotionBuy() + getPromotionGet()) * getPromotionBuy()
                 + product.getQuantity() % (getPromotionBuy() + getPromotionGet());
     }

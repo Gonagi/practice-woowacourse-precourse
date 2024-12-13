@@ -1,35 +1,36 @@
 package store.controller;
 
+import static store.util.ExceptionRetryHandler.retryOnException;
+
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Supplier;
-import store.domain.Store;
 import store.domain.product.Product;
+import store.service.StoreService;
 import store.util.Translator;
 import store.view.InputView;
 import store.view.OutputView;
 
 public class Controller {
-    private final Store store;
+    private final StoreService storeService;
     private final InputView inputView;
     private final OutputView outputView;
 
-    public Controller(final Store store, final InputView inputView, final OutputView outputView) {
-        this.store = store;
+    public Controller(final StoreService storeService, final InputView inputView, final OutputView outputView) {
+        this.storeService = storeService;
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void run() {
         while (true) {
-            outputView.printStorageMessage(store.getStorage());
+            outputView.printStorageMessage(storeService.getStorage());
             buyProductsProcess();
 
 //            String getMoreProductsAnswer = retryOnException(() -> inputView.inputGetMoreProducts(product));
 //            String promotionApplyAnswer = retryOnException(() -> inputView.inputPromotionApply(product));
             String membershipAnswer = retryOnException(inputView::inputMemberShip);
 
-            outputView.printReceiptMessage(store.getReceipt(), membershipAnswer);
+            outputView.printReceiptMessage(storeService.getReceipt(), membershipAnswer);
 
             String inputAdditionalPurchaseAnswer = retryOnException(inputView::inputAdditionalPurchase);
             if (Objects.equals(inputAdditionalPurchaseAnswer, "N")) {
@@ -48,17 +49,7 @@ public class Controller {
 
     private void buyProducts(final List<Product> products) {
         for (Product product : products) {
-            store.buyProduct(product);
-        }
-    }
-
-    private <T> T retryOnException(final Supplier<T> task) {
-        while (true) {
-            try {
-                return task.get();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            storeService.buyProduct(product);
         }
     }
 }
