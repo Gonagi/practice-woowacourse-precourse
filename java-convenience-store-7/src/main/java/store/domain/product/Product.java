@@ -37,6 +37,15 @@ public class Product {
         this.quantity -= exchangeProduct.getQuantity();
     }
 
+    public Product calculateBuyProduct(final Product buyProduct) {
+        return new Builder(buyProduct.getName(), buyProduct.getQuantity()).price(this.price).build();
+    }
+
+    public Product calculateGetProduct(final Product buyProduct) {
+        int getQuantity = buyProduct.getQuantity() - calculateBuyQuantity(buyProduct);
+        return new Builder(buyProduct.getName(), getQuantity).price(this.price).build();
+    }
+
     public String getName() {
         return name;
     }
@@ -49,12 +58,25 @@ public class Product {
         return quantity;
     }
 
+    public int getPromotionBuy() {
+        return promotion.getBuy();
+    }
+
+    public int getPromotionGet() {
+        return promotion.getGet();
+    }
+
     public Promotion getPromotion() {
         return promotion;
     }
 
     public String getPromotionName() {
         return promotion.getName();
+    }
+
+    private int calculateBuyQuantity(final Product product) {
+        return product.getQuantity() / (getPromotionBuy() + getPromotionGet()) * getPromotionBuy()
+                + product.getQuantity() % (getPromotionBuy() + getPromotionGet());
     }
 
     @Override
